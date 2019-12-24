@@ -3,16 +3,16 @@ matrix:
   fast_finish: true
   include:
     - name: "Python 2.7 on Xenial"
-      python: 2.7
       dist: xenial
       language: python
+      python: 3
     - name: "Python 3.7 on macOS"
       os: osx
-      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
-      language: shell       # 'language: python' is an error on Travis CI macOS
+      osx_image: xcode10.2  # ProductName:	Mac OS X ProductVersion:	10.14.4 BuildVersion:	18E226
+      language: shell
     - name: "Python 3.8 on Windows"
       os: windows           # Windows 10.0.17134 N/A Build 17134
-      language: shell       # 'language: python' is an error on Travis CI Windows
+      language: shell
       before_install:
         - choco install python --version 3.8.1 # pinned python version
       env:
@@ -20,7 +20,6 @@ matrix:
   allow_failures:
     - os: windows           # Windows 10.0.17134 N/A Build 17134
 install:
-    - python --version
     # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
   # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
   # - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
