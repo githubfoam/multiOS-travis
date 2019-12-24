@@ -42,8 +42,11 @@ matrix:
         # - python3 -m pytest
         - python --version
         - virtualenv -p $(which python) venvpy
+        - source venvpy/bin/activate
+        - pip3 install codecov
+        - python3 -m pytest
       after_success:
-        - python 3 -m codecov
+        - python3 -m codecov
 
   #   - name: "Python 3.7.5 on macOS xcode9.4 "
   #     os: osx
