@@ -33,20 +33,22 @@ matrix:
       language: shell
       # python: 3.5
       before_install:
-        - python3 --version
         # - pip3 install -U pip
         # - pip3 install -U pytest
         # - pip3 install codecov
         - pip3 install virtualenv
       script:
         # - python3 -m pytest
+        - python3 --version
+        - python2 --version
         - python --version
-        - virtualenv -p $(which python) venvpy
-        - source venvpy/bin/activate
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
         - pip3 install -U pip
         - pip3 install -U pytest
         - pip3 install codecov
         - pip3 list
+        - deactivate
         - whoami
         - pwd
         # - python3 -m pytest
