@@ -3,37 +3,56 @@ matrix:
   fast_finish: true
   include:
 
-    # - name: "Python 3.7 on bionic"
-    #   dist: bionic
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - python --version
-    #   script:
-    #     - python --version
-    #     - pip --version
-    #     - pip install virtualenv
-    #     # - pip install -r requirements.txt
-    #
-    # - name: "Python 2.7 on xenial"
-    #   dist: xenial
-    #   language: python
-    #   python: 2.7
-    #   before_install:
-    #     - pip install virtualenv
-    #     - virtualenv -p $(which python2) ~venvpy2
-    #     - source ~venvpy2/bin/activate
-    #   install:
-    #     - pip list
-    #     - pip --version
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - pip install -r requirements.txt
-    #   after_success:
-    #     - deactivate
+    - name: "Python 3.7 on bionic"
+      dist: bionic
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 2.7 on xenial"
+      dist: xenial
+      language: python
+      python: 2.7
+      before_install:
+        - pip install virtualenv
+        - virtualenv -p $(which python2) ~venvpy2
+        - source ~venvpy2/bin/activate
+      install:
+        - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
 
     - name: "Python 2.7.17 on macOS xcode10.2"
       os: osx
@@ -58,65 +77,94 @@ matrix:
         - pwd
       after_success:
         - deactivate
-    #
-    # - name: "Python 3.7.5 on macOS xcode10.2"
-    #   os: osx
-    #   osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
-    #   language: shell
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #   install:
-    #     - pip3 install -U pip
-    #     - pip3 install -U pytest
-    #     - pip3 install codecov
-    #     - pip3 list
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - whoami
-    #     - pwd
-    #   after_success:
-    #     - deactivate
 
-  #   - name: "Python 3.7.5 on macOS xcode9.4 "
-  #     os: osx
-  #     osx_image: xcode9.4  # travis-ci-macos10.13-xcode9.4.1-19-1576204381
-  #     language: shell  # 'language: python' is an error on Travis CI macOS
-  #     before_install:
-  #       - python3 --version
-  #       - pip3 install -U pip
-  #       - pip3 install -U pytest
-  #       - pip3 install codecov
-  #       - pip3 install virtualenv
-  #     script:
-  #       # - python3 -m pytest
-  #       # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
-  #       - python3 --version
-  #       - echo $TRAVIS_OS_NAME
-  # # # cache: pip
-  #     # after_success:
-  #     #   - python 3 -m codecov
-  #
-  #   - name: "Python 3.8 on Windows"
-  #     os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
-  #     language: shell
-  #     before_install:
-  #       - choco install python --version 3.8.1 # pinned python version
-  #       - python --version
-  #       - python -m pip install --upgrade pip
-  #       - pip3 install --upgrade pytest
-  #       - pip3 install codecov
-  #       - pip3 install virtualenv
-  #     env:
-  #       - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+    - name: "Python 3.7.5 on macOS xcode10.2"
+      os: osx
+      osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
+      language: shell
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 3.7.5 on macOS xcode9.4 "
+      os: osx
+      osx_image: xcode9.4  # travis-ci-macos10.13-xcode9.4.1-19-1576204381
+      language: shell  # 'language: python' is an error on Travis CI macOS
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 3.8 on Windows"
+      os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+      language: shell
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.8.1 # pinned python version
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
 
   allow_failures:
-  #   - os: windows
-  #   - os: osx
-  #     osx_image: xcode10.2
     - os: osx
       osx_image: xcode9.4
