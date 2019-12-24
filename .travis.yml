@@ -13,8 +13,19 @@ matrix:
       python: 3.5
       before_install:
         - python --version
-        - pip install pytest --user
-        - pip install codecov --user
+      script: python3 -m pytest
+      after_success: python 3 -m codecov
+    - name: "Python 3.6.5 on macOS 10.13"
+      os: osx
+      osx_image: xcode9.4  # Python 3.6.5 running on macOS 10.13
+      language: shell  # 'language: python' is an error on Travis CI macOS
+      before_install:
+        - python3 --version
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+      script: python3 -m pytest
+      after_success: python 3 -m codecov
       # python: 3.7 # Python 2.7.17
     # - name: "Python 3.8 on Windows"
     #   os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
@@ -31,16 +42,16 @@ matrix:
     - os: windows
     - os: osx
       osx_image: xcode10.2
-install:
-    # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
-  # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
-  # - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
-  # - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
-script:
-  # - pytest --cov=./
-    - python --version
-
-# cache: pip
-
-after_success:
-  # - codecov
+# install:
+#     # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
+#   # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
+#   # - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
+#   # - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
+# script:
+#   # - pytest --cov=./
+#     - python --version
+#
+# # cache: pip
+#
+# after_success:
+#   # - codecov
