@@ -1,1 +1,1 @@
-panda==0.3.1
+testinfras==3.3.0
