@@ -138,7 +138,7 @@ matrix:
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
       before_install:
-        - choco install python --version 3.8.1 # pinned python version
+        - choco install python # pinned python version
         - python --version
         - python -m pip install --upgrade pip
         - pip3 install --upgrade pytest
@@ -154,7 +154,6 @@ matrix:
         - pip3 install codecov
         - pip install -r requirements.txt
       script:
-        - set -x
         - python3 --version
         - python2 --version
         - python --version
@@ -167,6 +166,29 @@ matrix:
       after_success:
         - deactivate
 
-  allow_failures:
-    - os: windows
-      osx_image: xcode9.4
+    - name: "Python 3.7 pinned chocolatey package on Windows"
+      os: windows
+      language: shell
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.7.3
+        - python -m pip install virtualenv
+        - virtualenv $HOME/venv
+        - source $HOME/venv/Scripts/activate
+      install:
+        - pip3 install -U pip
+        - pip3 install -U pytest
+        - pip3 install codecov
+        - pip install -r requirements.txt
+      script:
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
