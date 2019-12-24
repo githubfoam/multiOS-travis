@@ -42,7 +42,7 @@ matrix:
         - pip install -r requirements.txt
       script:
         - set -x
-        - python3 --version
+        # - python3 --version
         - python2 --version
         - python --version
         - pip3 --version
@@ -145,7 +145,7 @@ matrix:
         - pip3 install codecov
         - pip3 install virtualenv
         - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
+        - venvpy3/bin/activate
       install:
         - pip3 install -U pip
         - pip3 install -U pytest
