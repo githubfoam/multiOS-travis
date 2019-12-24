@@ -13,7 +13,7 @@ matrix:
       # language: generic
       # env: PYTHON=3.5.1
       # language: python
-      python: 3.7
+      # python: 3.7 # Python 2.7.17
     - name: "Python 3.8 on Windows"
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
       language: shell
