@@ -5,9 +5,9 @@ matrix:
     - name: "Python 2.7 on Xenial"
       dist: xenial
       language: python
-      python: 3
+      python: 3.7
     - name: "Python 3.7 on macOS"
-      os: osx
+      os: osx # instance: f026ab6a-ef8c-4e81-a3e3-d43a3bef2253 travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       osx_image: xcode10.2  # ProductName:	Mac OS X ProductVersion:	10.14.4 BuildVersion:	18E226
       language: shell
     - name: "Python 3.8 on Windows"
