@@ -2,13 +2,17 @@
 matrix:
   fast_finish: true
   include:
-    # - name: "Python 3.7 on Bionic"
-    #   dist: bionic
-    #   language: python
-    #   python: 3.7
-    - name: "Python 3.7.x on macOS"
-      os: osx # instance: f026ab6a-ef8c-4e81-a3e3-d43a3bef2253 travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
-      osx_image: xcode10.2  # ProductName:	Mac OS X ProductVersion:	10.14.4 BuildVersion:	18E226
+    - name: "Python 3.7 on bionic"
+      dist: bionic
+      language: python
+      python: 3.7
+    - name: "Python 3.7 on xenial"
+      dist: xenial
+      language: python
+      python: 3.7
+    - name: "Python 3.7.5 on macOS xcode10.2"
+      os: osx
+      osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       language: shell
       # python: 3.5
       before_install:
@@ -19,11 +23,12 @@ matrix:
       script:
         # - python3 -m pytest
         - python3 --version
+        - echo $TRAVIS_OS_NAME
       # after_success:
       #   - python 3 -m codecov
-    - name: "Python 3.6.5 on macOS 10.13"
-      os: osx
-      osx_image: xcode9.4  # Python 3.6.5 running on macOS 10.13
+    - name: "Python 3.7.5 on macOS xcode9.4 "
+      os: osxxcode9.4
+      osx_image: xcode9.4  # travis-ci-macos10.13-xcode9.4.1-19-1576204381
       language: shell  # 'language: python' is an error on Travis CI macOS
       before_install:
         - python3 --version
@@ -32,36 +37,26 @@ matrix:
         - pip3 install codecov
       script:
         # - python3 -m pytest
+        # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
         - python3 --version
+        - echo $TRAVIS_OS_NAME
+  # # cache: pip
       # after_success:
       #   - python 3 -m codecov
-    # - name: "Python 3.8 on Windows"
-    #   os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
-    #   language: shell
-    #   before_install:
-    #     - choco install python --version 3.8.1 # pinned python version
-    #     - python --version
-    #     - python -m pip install --upgrade pip
-    #     - pip3 install --upgrade pytest
-    #     - pip3 install codecov
-    #   env:
-    #     - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+    - name: "Python 3.8 on Windows"
+      os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+      language: shell
+      before_install:
+        - choco install python --version 3.8.1 # pinned python version
+        - python --version
+        - python -m pip install --upgrade pip
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
   allow_failures:
     - os: windows
     - os: osx
       osx_image: xcode10.2
     - os: osx
       osx_image: xcode9.4
-# install:
-#     # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
-#   # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
-#   # - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
-#   # - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
-# script:
-#   # - pytest --cov=./
-#     - python --version
-#
-# # cache: pip
-#
-# after_success:
-#   # - codecov
