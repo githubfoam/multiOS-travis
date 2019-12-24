@@ -27,12 +27,18 @@ matrix:
     #     - pip install virtualenv
     #     # - pip install -r requirements.txt
 
-    - name: "Python 3.7.5, Python 2.7.17 on macOS xcode10.2"
+    # - name: "Python 3.7.5, Python 2.7.17 on macOS xcode10.2"
+    - name: "Python 2.7.17 on macOS xcode10.2"
       os: osx
       osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       language: shell
       before_install:
         - pip3 install virtualenv
+      install:
+        - virtualenv -p $(which python2) ~venvpy2
+        - source ~venvpy3/bin/activate
+        - pip install pytest --user
+        - pip install codecov --user
       script:
         - set -x
         - python3 --version
@@ -40,16 +46,16 @@ matrix:
         - python --version
         - whoami
         - pwd
-        - virtualenv -p $(which python2) ~venvpy2
-        - source ~venvpy3/bin/activate
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
+        - pip list
+        - python -m pytest
+        # - pip3 install -U pip
+        # - pip3 install -U pytest
+
+        # - pip3 install codecov
         - coverage run tests.py
-        - pip3 list
         # - python3 -m pytest
       after_success:
-        - codecov
+        - python  -m codecov
         - deactivate
   #   - name: "Python 3.7.5 on macOS xcode9.4 "
   #     os: osx

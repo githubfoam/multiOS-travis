@@ -5,5 +5,8 @@ linux osx win travis
 
 ~~~~
 <https://travis-ci.community/c/environments/windows>
-<https://docs.travis-ci.com/user/reference/windows/>
+Building a Python Project
+https://docs.travis-ci.com/user/languages/python/
+Build Environment Overview
+https://docs.travis-ci.com/user/reference/overview/
 ~~~~
