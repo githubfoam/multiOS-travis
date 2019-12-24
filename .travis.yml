@@ -2,28 +2,35 @@
 matrix:
   fast_finish: true
   include:
-    - name: "Python 3.7 on Bionic"
-      dist: bionic
-      language: python
-      python: 3.7
+    # - name: "Python 3.7 on Bionic"
+    #   dist: bionic
+    #   language: python
+    #   python: 3.7
     - name: "Python 2.7 on macOS"
       os: osx # instance: f026ab6a-ef8c-4e81-a3e3-d43a3bef2253 travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       osx_image: xcode10.2  # ProductName:	Mac OS X ProductVersion:	10.14.4 BuildVersion:	18E226
       language: shell
       python: 3.5
-      # language: generic
-      # env: PYTHON=3.5.1
-      # language: python
-      # python: 3.7 # Python 2.7.17
-    - name: "Python 3.8 on Windows"
-      os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
-      language: shell
       before_install:
-        - choco install python --version 3.8.1 # pinned python version
-      env:
-        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+        - python --version
+        - pip install pytest --user
+        - pip install codecov --user
+      # python: 3.7 # Python 2.7.17
+    # - name: "Python 3.8 on Windows"
+    #   os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
+    #   language: shell
+    #   before_install:
+    #     - choco install python --version 3.8.1 # pinned python version
+    #     - python --version
+    #     - python -m pip install --upgrade pip
+    #     - pip3 install --upgrade pytest
+    #     - pip3 install codecov
+    #   env:
+    #     - PATH=/c/Python38:/c/Python38/Scripts:$PATH
   allow_failures:
     - os: windows
+    - os: osx
+      osx_image: xcode10.2
 install:
     # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
   # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
