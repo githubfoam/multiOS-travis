@@ -1,0 +1,31 @@
+---
+matrix:
+  fast_finish: true
+  include:
+    - name: "Python 3.7 on Xenial"
+      python: 3.7
+      dist: xenial          
+    - name: "Python 3.7 on macOS"
+      os: osx
+      osx_image: xcode10.2  # Python 3.7.2 running on macOS 10.14.3
+      language: shell       # 'language: python' is an error on Travis CI macOS
+    - name: "Python 3.8 on Windows"
+      os: windows           # Windows 10.0.17134 N/A Build 17134
+      language: shell       # 'language: python' is an error on Travis CI Windows
+      before_install:
+        - choco install python --version 3.8.1 # pinned python version
+      env:
+        - PATH=/c/Python38:/c/Python38/Scripts:$PATH
+  allow_failures:
+    - os: windows           # Windows 10.0.17134 N/A Build 17134
+install:
+  - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
+  - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
+  - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
+script:
+  - pytest --cov=./
+
+cache: pip
+
+after_success:
+  - codecov
