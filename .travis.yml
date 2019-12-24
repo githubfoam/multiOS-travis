@@ -34,11 +34,9 @@ matrix:
       before_install:
         - pip install virtualenv
         - virtualenv -p $(which python2) ~venvpy2
-        - source ~venvpy2/bin/activate        
-      install:
         - source ~venvpy2/bin/activate
-        - pip install pytest --user
-        - pip install codecov --user
+      install:
+        - pip list
       script:
         - set -x
         - python3 --version
@@ -46,10 +44,7 @@ matrix:
         - python --version
         - whoami
         - pwd
-        - pip list
-        - python -m pytest
       after_success:
-        - python  -m codecov
         - deactivate
 
     - name: "Python 3.7.5 on macOS xcode10.2"
@@ -64,6 +59,7 @@ matrix:
         - pip3 install -U pip
         - pip3 install -U pytest
         - pip3 install codecov
+
       script:
         - set -x
         - python3 --version
@@ -72,9 +68,7 @@ matrix:
         - whoami
         - pwd
         - pip3 list
-        - python3 -m pytest
       after_success:
-        - python 3 -m codecov
         - deactivate
 
   #   - name: "Python 3.7.5 on macOS xcode9.4 "
