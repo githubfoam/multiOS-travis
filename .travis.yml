@@ -32,10 +32,11 @@ matrix:
       osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       language: shell
       before_install:
-        - pip3 install virtualenv
-      install:
+        - pip install virtualenv
         - virtualenv -p $(which python2) ~venvpy2
-        - source ~venvpy3/bin/activate
+        - source ~venvpy2/bin/activate        
+      install:
+        - source ~venvpy2/bin/activate
         - pip install pytest --user
         - pip install codecov --user
       script:
@@ -57,9 +58,9 @@ matrix:
       language: shell
       before_install:
         - pip3 install virtualenv
-      install:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
+      install:
         - pip3 install -U pip
         - pip3 install -U pytest
         - pip3 install codecov
