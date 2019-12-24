@@ -10,6 +10,7 @@ matrix:
       os: osx # instance: f026ab6a-ef8c-4e81-a3e3-d43a3bef2253 travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
       osx_image: xcode10.2  # ProductName:	Mac OS X ProductVersion:	10.14.4 BuildVersion:	18E226
       language: shell
+      python: 3.5
       # language: generic
       # env: PYTHON=3.5.1
       # language: python
