@@ -145,7 +145,7 @@ matrix:
         - pip3 install codecov
         - pip3 install virtualenv
         - virtualenv venvpy3
-        - dir
+        - dir venvpy3
         - venvpy3\Scripts\activate.bat
       install:
         - pip3 install -U pip
