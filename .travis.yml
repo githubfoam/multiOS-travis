@@ -16,7 +16,6 @@ matrix:
       language: shell
       # python: 3.5
       before_install:
-        - python3 --version
         - pip3 install -U pip
         - pip3 install -U pytest
         - pip3 install codecov
