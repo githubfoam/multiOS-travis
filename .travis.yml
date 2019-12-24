@@ -144,8 +144,8 @@ matrix:
         - pip3 install --upgrade pytest
         - pip3 install codecov
         - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - venvpy3/bin/activate
+        - virtualenv venvpy3
+        - venvpy3\Scripts\activate
       install:
         - pip3 install -U pip
         - pip3 install -U pytest
