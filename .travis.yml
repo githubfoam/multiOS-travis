@@ -34,17 +34,22 @@ matrix:
       # python: 3.5
       before_install:
         - python3 --version
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
+        # - pip3 install -U pip
+        # - pip3 install -U pytest
+        # - pip3 install codecov
         - pip3 install virtualenv
       script:
         # - python3 -m pytest
         - python --version
         - virtualenv -p $(which python) venvpy
         - source venvpy/bin/activate
+        - pip3 install -U pip
+        - pip3 install -U pytest
         - pip3 install codecov
-        - python3 -m pytest
+        - pip3 list
+        - whoami
+        - pwd
+        # - python3 -m pytest
       after_success:
         - python3 -m codecov
 
