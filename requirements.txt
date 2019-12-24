@@ -1,1 +1,2 @@
-virtualenv==1.11.6
+-c constraints.txt
+virtualenv
