@@ -21,11 +21,13 @@ matrix:
     - os: windows           # Windows 10.0.17134 N/A Build 17134
 install:
     - python --version
+    # - if [ "$TRAVIS_OS_NAME" = "osx" ]; then brew update          ; fi
   # - pip3 install --upgrade pip || pip3 install --upgrade --user pip  # --user is required for Windows
   # - pip3 install -r requirements.txt || pip3 install -r --user requirements.txt
   # - pip3 install pytest pytest-cov codecov || pip3 install --user pytest pytest-cov codecov  # install coverage monitor
 script:
   # - pytest --cov=./
+    - python --version
 
 # cache: pip
 
