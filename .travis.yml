@@ -45,7 +45,7 @@ matrix:
         # - python3 --version
         - python2 --version
         - python --version
-        - pip3 --version
+        # - pip3 --version
         - pip2 --version
         - pip --version
         - pip list
