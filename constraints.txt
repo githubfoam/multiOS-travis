@@ -1,1 +1,1 @@
-virtualenv==1.11.6
+testinfras==3.3.0
