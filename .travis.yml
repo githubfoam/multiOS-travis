@@ -1,6 +1,6 @@
 ---
 
-windows-install-tasks : &windows-install-tasks
+windows_install_tasks : &windows_install_tasks
       install:
         - pip install -U pip
         - pip install -U pytest
@@ -152,12 +152,7 @@ matrix:
         - pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      <<: *windows-install-tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip3 install -r requirements.txt
+      <<: *windows_install_tasks
       script:
         - pip3 list
       after_success:
@@ -172,12 +167,7 @@ matrix:
         - python -m pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      <<: *windows-install-tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip3 install -r requirements.txt
+      <<: *windows_install_tasks
       script:
         - pip3 list
       after_success:
