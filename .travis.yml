@@ -1,4 +1,11 @@
 ---
+
+windows-install-tasks : &windows-install-tasks 
+  install:
+      - python -m pip install virtualenv
+      - virtualenv $HOME/venv
+      - source $HOME/venv/Scripts/activate
+
 matrix:
   fast_finish: true
   include:
@@ -144,11 +151,12 @@ matrix:
         - pip3 install virtualenv
         - virtualenv $HOME/venvpy3
         - source $HOME/venvpy3/Scripts/activate
-      install:
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
-        - pip3 install -r requirements.txt
+      <<: *windows-install-tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip3 install -r requirements.txt
       script:
         - pip3 list
       after_success:
@@ -163,11 +171,12 @@ matrix:
         - python -m pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      install:
-        - pip3 install -U pip
-        - pip3 install -U pytest
-        - pip3 install codecov
-        - pip3 install -r requirements.txt
+      <<: *windows-install-tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip3 install -r requirements.txt
       script:
         - pip3 list
       after_success:
