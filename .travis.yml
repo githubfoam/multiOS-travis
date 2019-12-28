@@ -1,7 +1,8 @@
 ---
 
 fleet_script_tasks : &fleet_script_tasks
-
+      script:
+        - python --version
 fleet_install_tasks : &fleet_install_tasks
       install:
         - pip install -U pip
