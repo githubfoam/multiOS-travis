@@ -1,10 +1,11 @@
 ---
 
-windows-install-tasks : &windows-install-tasks 
-  install:
-      - python -m pip install virtualenv
-      - virtualenv $HOME/venv
-      - source $HOME/venv/Scripts/activate
+windows-install-tasks : &windows-install-tasks
+      install:
+        - pip install -U pip
+        - pip install -U pytest
+        - pip install codecov
+        - pip install -r requirements.txt
 
 matrix:
   fast_finish: true
@@ -146,11 +147,11 @@ matrix:
       before_install:
         - choco install python --version 3.8.1
         - python -m pip install --upgrade pip
-        - pip3 install --upgrade pytest
-        - pip3 install codecov
-        - pip3 install virtualenv
-        - virtualenv $HOME/venvpy3
-        - source $HOME/venvpy3/Scripts/activate
+        - pip install --upgrade pytest
+        - pip install codecov
+        - pip install virtualenv
+        - virtualenv $HOME/venv
+        - source $HOME/venv/Scripts/activate
       <<: *windows-install-tasks
       # install:
       #   - pip3 install -U pip
