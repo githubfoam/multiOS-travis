@@ -157,8 +157,8 @@ matrix:
       before_install:
         - choco install python --version 3.8.1
         - python -m pip install --upgrade pip
-        - pip install --upgrade pytest
-        - pip install codecov
+        - pip3 install --upgrade pytest
+        - pip3 install codecov
       <<: *windows_before_install_tasks
         # - pip install virtualenv
         # - virtualenv $HOME/venv
