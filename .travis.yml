@@ -1,5 +1,7 @@
 ---
 
+fleet_script_tasks : &fleet_script_tasks
+
 fleet_install_tasks : &fleet_install_tasks
       install:
         - pip install -U pip
@@ -20,22 +22,18 @@ matrix:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
       <<: *fleet_install_tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip install -r requirements.txt
-      script:
-        - set -x
-        - python3 --version
-        - python2 --version
-        - python --version
-        - pip3 --version
-        - pip2 --version
-        - pip --version
-        - pip list
-        - whoami
-        - pwd
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
 
@@ -48,20 +46,18 @@ matrix:
         - virtualenv -p $(which python2) ~venvpy2
         - source ~venvpy2/bin/activate
       <<: *fleet_install_tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip install -r requirements.txt
-      script:
-        - set -x
-        - python2 --version
-        - python --version
-        - pip2 --version
-        - pip --version
-        - pip list
-        - whoami
-        - pwd
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
 
       after_success:
         - deactivate
@@ -75,22 +71,18 @@ matrix:
         - virtualenv -p $(which python2) ~venvpy2
         - source ~venvpy2/bin/activate
       <<: *fleet_install_tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip install -r requirements.txt
-      script:
-        - set -x
-        - python3 --version
-        - python2 --version
-        - python --version
-        - pip3 --version
-        - pip2 --version
-        - pip --version
-        - pip list
-        - whoami
-        - pwd
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
 
@@ -103,22 +95,18 @@ matrix:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
       <<: *fleet_install_tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip install -r requirements.txt
-      script:
-        - set -x
-        - python3 --version
-        - python2 --version
-        - python --version
-        - pip3 --version
-        - pip2 --version
-        - pip --version
-        - pip list
-        - whoami
-        - pwd
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
 
@@ -131,21 +119,18 @@ matrix:
         - virtualenv -p $(which python3) ~venvpy3
         - source ~venvpy3/bin/activate
       <<: *fleet_install_tasks
-      # install:
-      #   - pip3 install -U pip
-      #   - pip3 install -U pytest
-      #   - pip3 install codecov
-      #   - pip install -r requirements.txt
-      script:
-        - python3 --version
-        - python2 --version
-        - python --version
-        - pip3 --version
-        - pip2 --version
-        - pip --version
-        - pip list
-        - whoami
-        - pwd
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
 
@@ -163,8 +148,18 @@ matrix:
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
       <<: *fleet_install_tasks
-      script:
-        - pip list
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
 
@@ -178,7 +173,17 @@ matrix:
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
       <<: *fleet_install_tasks
-      script:
-        - pip list
+      <<: *fleet_script_tasks
+      # script:
+      #   - set -x
+      #   - python3 --version
+      #   - python2 --version
+      #   - python --version
+      #   - pip3 --version
+      #   - pip2 --version
+      #   - pip --version
+      #   - pip list
+      #   - whoami
+      #   - pwd
       after_success:
         - deactivate
