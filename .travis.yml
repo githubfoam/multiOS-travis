@@ -1,6 +1,10 @@
 ---
 windows_before_install_tasks : &windows_before_install_tasks
       before_install:
+          - choco install python
+          - python -m pip install --upgrade pip
+          - pip install --upgrade pytest
+          - pip install codecov
           - pip install virtualenv
           - virtualenv $HOME/venv
           - source $HOME/venv/Scripts/activate
@@ -148,11 +152,12 @@ matrix:
       language: shell
       env:
         - PATH=/c/Python38:/c/Python38/Scripts:$PATH
-      before_install:
-        - choco install python --version 3.8.1
-        - python -m pip install --upgrade pip
-        - pip install --upgrade pytest
-        - pip install codecov
+      <<: *windows_before_install_tasks
+      # before_install:
+        # - choco install python --version 3.8.1
+        # - python -m pip install --upgrade pip
+        # - pip install --upgrade pytest
+        # - pip install codecov
       <<: *windows_before_install_tasks
         # - pip install virtualenv
         # - virtualenv $HOME/venv
@@ -163,17 +168,18 @@ matrix:
       after_success:
         - deactivate
 
-    # - name: "Python 3.7 pinned chocolatey package on Windows"
-    #   os: windows
-    #   language: shell
-    #   env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
-    #   before_install:
-    #     - choco install python --version 3.7.3
-    #     - python -m pip install virtualenv
-    #     - virtualenv $HOME/venv
-    #     - source $HOME/venv/Scripts/activate
-    #   <<: *windows_install_tasks
-    #   script:
-    #     - pip3 list
-    #   after_success:
-    #     - deactivate
+    - name: "Python 3.7 on Windows"
+      os: windows
+      language: shell
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+      # before_install:
+      #   - choco install python --version 3.7.3
+      #   - python -m pip install virtualenv
+      #   - virtualenv $HOME/venv
+      #   - source $HOME/venv/Scripts/activate
+      <<: *windows_before_install_tasks
+      <<: *windows_install_tasks
+      script:
+        - pip3 list
+      after_success:
+        - deactivate
