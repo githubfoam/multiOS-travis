@@ -1,14 +1,5 @@
 ---
-windows_before_install_tasks : &windows_before_install_tasks
-      before_install:
-          - python --version
-          # - choco install python
-          - python -m pip install --upgrade pip
-          - pip install --upgrade pytest
-          - pip install codecov
-          - pip install virtualenv
-          - virtualenv $HOME/venv
-          - source $HOME/venv/Scripts/activate
+
 windows_install_tasks : &windows_install_tasks
       install:
         - pip install -U pip
@@ -159,7 +150,6 @@ matrix:
         - python -m pip install --upgrade pip
         - pip3 install --upgrade pytest
         - pip3 install codecov
-      <<: *windows_before_install_tasks
         # - pip install virtualenv
         # - virtualenv $HOME/venv
         # - source $HOME/venv/Scripts/activate
@@ -178,7 +168,6 @@ matrix:
         - python -m pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      # <<: *windows_before_install_tasks
       <<: *windows_install_tasks
       script:
         - pip list
