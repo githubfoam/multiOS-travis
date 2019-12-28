@@ -1,6 +1,6 @@
 ---
 
-windows_install_tasks : &windows_install_tasks
+fleet_install_tasks : &fleet_install_tasks
       install:
         - pip install -U pip
         - pip install -U pytest
@@ -11,133 +11,143 @@ matrix:
   fast_finish: true
   include:
 
-    # - name: "Python 3.7 on bionic"
-    #   dist: bionic
-    #   language: python
-    #   python: 3.7
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #   install:
-    #     - pip3 install -U pip
-    #     - pip3 install -U pytest
-    #     - pip3 install codecov
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - pip3 --version
-    #     - pip2 --version
-    #     - pip --version
-    #     - pip list
-    #     - whoami
-    #     - pwd
-    #   after_success:
-    #     - deactivate
-    #
-    # - name: "Python 2.7 on xenial"
-    #   dist: xenial
-    #   language: python
-    #   python: 2.7
-    #   before_install:
-    #     - pip install virtualenv
-    #     - virtualenv -p $(which python2) ~venvpy2
-    #     - source ~venvpy2/bin/activate
-    #   install:
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - set -x
-    #     - python2 --version
-    #     - python --version
-    #     - pip2 --version
-    #     - pip --version
-    #     - pip list
-    #     - whoami
-    #     - pwd
-    #
-    #   after_success:
-    #     - deactivate
-    #
-    # - name: "Python 2.7.17 on macOS xcode10.2"
-    #   os: osx
-    #   osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
-    #   language: shell
-    #   before_install:
-    #     - pip install virtualenv
-    #     - virtualenv -p $(which python2) ~venvpy2
-    #     - source ~venvpy2/bin/activate
-    #   install:
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - pip3 --version
-    #     - pip2 --version
-    #     - pip --version
-    #     - pip list
-    #     - whoami
-    #     - pwd
-    #   after_success:
-    #     - deactivate
-    #
-    # - name: "Python 3.7.5 on macOS xcode10.2"
-    #   os: osx
-    #   osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
-    #   language: shell
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #   install:
-    #     - pip3 install -U pip
-    #     - pip3 install -U pytest
-    #     - pip3 install codecov
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - pip3 --version
-    #     - pip2 --version
-    #     - pip --version
-    #     - pip list
-    #     - whoami
-    #     - pwd
-    #   after_success:
-    #     - deactivate
-    #
-    # - name: "Python 3.7.5 on macOS xcode9.4 "
-    #   os: osx
-    #   osx_image: xcode9.4  # travis-ci-macos10.13-xcode9.4.1-19-1576204381
-    #   language: shell  # 'language: python' is an error on Travis CI macOS
-    #   before_install:
-    #     - pip3 install virtualenv
-    #     - virtualenv -p $(which python3) ~venvpy3
-    #     - source ~venvpy3/bin/activate
-    #   install:
-    #     - pip3 install -U pip
-    #     - pip3 install -U pytest
-    #     - pip3 install codecov
-    #     - pip install -r requirements.txt
-    #   script:
-    #     - set -x
-    #     - python3 --version
-    #     - python2 --version
-    #     - python --version
-    #     - pip3 --version
-    #     - pip2 --version
-    #     - pip --version
-    #     - pip list
-    #     - whoami
-    #     - pwd
-    #   after_success:
-    #     - deactivate
+    - name: "Python 3.7 on bionic"
+      dist: bionic
+      language: python
+      python: 3.7
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      <<: *fleet_install_tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 2.7 on xenial"
+      dist: xenial
+      language: python
+      python: 2.7
+      before_install:
+        - pip install virtualenv
+        - virtualenv -p $(which python2) ~venvpy2
+        - source ~venvpy2/bin/activate
+      <<: *fleet_install_tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip install -r requirements.txt
+      script:
+        - set -x
+        - python2 --version
+        - python --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+
+      after_success:
+        - deactivate
+
+    - name: "Python 2.7.17 on macOS xcode10.2"
+      os: osx
+      osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
+      language: shell
+      before_install:
+        - pip install virtualenv
+        - virtualenv -p $(which python2) ~venvpy2
+        - source ~venvpy2/bin/activate
+      <<: *fleet_install_tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 3.7.5 on macOS xcode10.2"
+      os: osx
+      osx_image: xcode10.2  # travis-ci-macos10.14-xcode10.2-19-1573099784 (via amqp)
+      language: shell
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      <<: *fleet_install_tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip install -r requirements.txt
+      script:
+        - set -x
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
+
+    - name: "Python 3.7.5 on macOS xcode9.4 "
+      os: osx
+      osx_image: xcode9.4  # travis-ci-macos10.13-xcode9.4.1-19-1576204381
+      language: shell  # 'language: python' is an error on Travis CI macOS
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+      <<: *fleet_install_tasks
+      # install:
+      #   - pip3 install -U pip
+      #   - pip3 install -U pytest
+      #   - pip3 install codecov
+      #   - pip install -r requirements.txt
+      script:
+        - python3 --version
+        - python2 --version
+        - python --version
+        - pip3 --version
+        - pip2 --version
+        - pip --version
+        - pip list
+        - whoami
+        - pwd
+      after_success:
+        - deactivate
 
     - name: "Python 3.8 on Windows"
       os: windows           # travis-ci-windows-1803-containers-1569974367-710c8b1d
@@ -152,7 +162,7 @@ matrix:
         - pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      <<: *windows_install_tasks
+      <<: *fleet_install_tasks
       script:
         - pip list
       after_success:
@@ -167,7 +177,7 @@ matrix:
         - python -m pip install virtualenv
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
-      <<: *windows_install_tasks
+      <<: *fleet_install_tasks
       script:
         - pip list
       after_success:
