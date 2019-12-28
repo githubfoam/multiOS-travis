@@ -1,7 +1,8 @@
 ---
 windows_before_install_tasks : &windows_before_install_tasks
       before_install:
-          - choco install python
+          - python --version
+          # - choco install python
           - python -m pip install --upgrade pip
           - pip install --upgrade pytest
           - pip install codecov
@@ -164,7 +165,7 @@ matrix:
         # - source $HOME/venv/Scripts/activate
       <<: *windows_install_tasks
       script:
-        - pip3 list
+        - pip list
       after_success:
         - deactivate
 
@@ -180,6 +181,6 @@ matrix:
       <<: *windows_before_install_tasks
       <<: *windows_install_tasks
       script:
-        - pip3 list
+        - pip list
       after_success:
         - deactivate
