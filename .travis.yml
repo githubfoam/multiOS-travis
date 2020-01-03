@@ -1,5 +1,8 @@
 ---
-
+notifications:
+  slack:
+    on_failure: always
+    
 fleet_script_tasks : &fleet_script_tasks
       script:
         - python --version
