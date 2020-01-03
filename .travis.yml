@@ -1,4 +1,8 @@
 ---
+  
+notifications:
+  slack:
+    on_failure: always
 
 notifications:
   slack:
