@@ -1,4 +1,9 @@
 ---
+
+notifications:
+  slack:
+    on_failure: always
+      
 matrix:
   fast_finish: true
   include:
