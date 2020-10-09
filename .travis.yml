@@ -15,9 +15,9 @@ matrix:
   include:
 
     - name: "Python 3.7 on focal"
-      dist: focal
-      language: python
-      # python: 3.7
+      dist: focal 
+      language: python # Python 3.6.10 by default
+      python: 3.7
       before_install:
         - pip3 install virtualenv
         - virtualenv -p $(which python3) ~venvpy3
@@ -51,6 +51,31 @@ matrix:
       <<: *fleet_install_tasks
       <<: *fleet_script_tasks
       after_success:
+        - deactivate
+
+    - name: "Python 3.7.5 on macOS 10.15.5 osx xcode12u"
+      os: osx
+      osx_image: 
+        - xcode12u
+      addons:
+        homebrew:
+          casks:
+          - vagrant
+          packages:
+          - beanstalk
+          update: true
+      language: shell
+      before_install:
+        - pip3 install virtualenv
+        - virtualenv -p $(which python3) ~venvpy3
+        - source ~venvpy3/bin/activate
+        - python --version
+        - pip install -r requirements.txt
+      script:
+        - brew list --versions
+        - vagrant version    
+      after_success:
+        # - brew cask uninstall multipass
         - deactivate
 
     - name: "Python 2.7.17 on macOS xcode10.2"
