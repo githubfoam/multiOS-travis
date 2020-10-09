@@ -3,6 +3,15 @@ linux osx win travis virtualenvs
 
 [![Build Status](https://travis-ci.com/githubfoam/multiOS-travis.svg?branch=master)](https://travis-ci.com/githubfoam/multiOS-travis)  
 
+osx macos
+[![Build Status](https://travis-ci.com/githubfoam/multiOS-travis.svg?branch=osx)](https://travis-ci.com/githubfoam/multiOS-travis)  
+
+linux ubuntu
+[![Build Status](https://travis-ci.com/githubfoam/multiOS-travis.svg?branch=linux)](https://travis-ci.com/githubfoam/multiOS-travis)  
+
+windows
+[![Build Status](https://travis-ci.com/githubfoam/multiOS-travis.svg?branch=windows)](https://travis-ci.com/githubfoam/multiOS-travis)  
+
 ~~~~
 Python 3.7 on focal
 Python 3.7 on bionic
@@ -19,6 +28,8 @@ Python 3.7 on Windows
 
 testinfra
 codecov
+~~~~
+~~~~
 
 The Ubuntu Linux Build Environments
 https://docs.travis-ci.com/user/reference/linux/
