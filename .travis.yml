@@ -145,3 +145,18 @@ matrix:
       <<: *fleet_script_tasks
       after_success:
         - deactivate
+
+# https://docs.travis-ci.com/user/reference/windows/#windows-version
+    - name: "Windows Server, version 1809"
+      os: windows
+      language: shell
+      env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
+      before_install:
+        - choco install python --version 3.7.3
+        - python -m pip install virtualenv
+        - virtualenv $HOME/venv
+        - source $HOME/venv/Scripts/activate
+      script:
+        - Systeminfo | findstr /i model #check if server is virtual
+      after_success:
+        - deactivate
