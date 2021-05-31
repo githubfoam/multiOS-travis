@@ -51,8 +51,8 @@ matrix:
         - pip install virtualenv
         - virtualenv -p $(which python2) ~venvpy2
         - source ~venvpy2/bin/activate
-      # <<: *fleet_install_tasks
-      # <<: *fleet_script_tasks
+      <<: *fleet_install_tasks
+      <<: *fleet_script_tasks
       after_success:
         - deactivate
         
@@ -62,12 +62,11 @@ matrix:
       python: 2.7
       before_install:
         - uname -a 
-        - hostnamectl status 
         - pip install virtualenv
         - virtualenv -p $(which python2) ~venvpy2
         - source ~venvpy2/bin/activate
-      # <<: *fleet_install_tasks
-      # <<: *fleet_script_tasks
+      <<: *fleet_install_tasks
+      <<: *fleet_script_tasks
       after_success:
         - deactivate
 
@@ -85,31 +84,31 @@ matrix:
     #   after_success:
     #     - deactivate
 
-# https://docs.travis-ci.com/user/reference/osx/#macos-version
-    - name: "Python 3.7.5 on macOS 11.2.1 osx xcode12.4"
-      os: osx
-      osx_image: 
-        - xcode12.4
-      addons:
-        homebrew:
-          casks:
-          - vagrant
-          packages:
-          - beanstalk
-          update: true
-      language: shell
-      before_install:
-        - pip3 install virtualenv
-        - virtualenv -p $(which python3) ~venvpy3
-        - source ~venvpy3/bin/activate
-        - python --version
-        - pip install -r requirements.txt
-      script:
-        - brew list --versions
-        - vagrant version    
-      after_success:
-        # - brew cask uninstall multipass
-        - deactivate
+# # https://docs.travis-ci.com/user/reference/osx/#macos-version
+#     - name: "Python 3.7.5 on macOS 11.2.1 osx xcode12.4"
+#       os: osx
+#       osx_image: 
+#         - xcode12.4
+#       addons:
+#         homebrew:
+#           casks:
+#           - vagrant
+#           packages:
+#           - beanstalk
+#           update: true
+#       language: shell
+#       before_install:
+#         - pip3 install virtualenv
+#         - virtualenv -p $(which python3) ~venvpy3
+#         - source ~venvpy3/bin/activate
+#         - python --version
+#         - pip install -r requirements.txt
+#       script:
+#         - brew list --versions
+#         - vagrant version    
+#       after_success:
+#         # - brew cask uninstall multipass
+#         - deactivate
 
 
 
