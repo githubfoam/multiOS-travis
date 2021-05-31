@@ -157,13 +157,15 @@ matrix:
         - virtualenv $HOME/venv
         - source $HOME/venv/Scripts/activate
       script:
-      # FINDSTR: Cannot open model
-        - Systeminfo | findstr /i model #check if server is virtual
-        - systeminfo | more 
+        # FINDSTR: Cannot open model
+        # - Systeminfo | findstr /i model #check if server is virtual
+        # more: command not found
+        # - systeminfo | more
+        - systeminfo  
         - wmic OS get OSArchitecture
         - wmic process list full
         - tasklist
-        - tasklist /svc  
+        # - tasklist /svc  
         - net start 
         - sc query  
       after_success:
